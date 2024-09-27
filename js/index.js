@@ -1,12 +1,16 @@
 window.onload = function() {
-    document.addEventListener('deviceready', inicio, false);
+    inicio();
 }
 
-let numeroCerto = 7; // Valor inicial padrão
+let numeroCerto = gerarNumeroAleatorio();
 
 function inicio() {
     var botao = document.getElementById('botao');
     botao.addEventListener('click', apertou);
+}
+
+function gerarNumeroAleatorio() {
+    return Math.floor(Math.random() * 11); 
 }
 
 function apertou() {
@@ -21,22 +25,20 @@ function apertou() {
 
     digitado = parseInt(digitado, 10);
 
-    if (digitado === numeroCerto) {
-        campoSaida.innerHTML = 'Acertou! Insira um novo número a ser adivinhado:';
-        let novoNumero = prompt('Parabéns! Você acertou. Digite um novo número para o próximo jogo:');
+    if (isNaN(digitado)) {
+        campoSaida.innerHTML = 'Entrada inválida! Digite um número válido.';
+        campoNumero.value = ''; 
+        return;
+    }
 
-        if (novoNumero !== null && !isNaN(novoNumero)) {
-            numeroCerto = parseInt(novoNumero, 10);
-            campoSaida.innerHTML = 'Novo jogo! Tente adivinhar o novo número.';
-        } else {
-            campoSaida.innerHTML = 'Número inválido. O jogo continuará com o número atual.';
-        }
+    if (digitado === numeroCerto) {
+        campoSaida.innerHTML = 'Acertou! Um novo número foi gerado automaticamente. Tente adivinhar novamente!';
+        numeroCerto = gerarNumeroAleatorio(); 
     } else if (digitado > numeroCerto) {
         campoSaida.innerHTML = 'Digite um número menor!';
     } else {
         campoSaida.innerHTML = 'Digite um número maior!';
     }
 
-    // Limpa o campo de entrada
     campoNumero.value = '';
 }
