@@ -2,7 +2,7 @@ var numero = 1;
 
 window.onload = function() {
     document.addEventListener('deviceready', pronto, false);
-    window.addEventListener('scroll', detectarFimScroll);
+    window.addEventListener('scroll', detectarInicioScroll);
 }
 
 function debug(e) {
@@ -36,15 +36,16 @@ function buscaPost() {
     xhttp.send();
 }
 
-function detectarFimScroll() {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+function detectarInicioScroll() {
+    
+    if (window.scrollY === 0) {
         
         var campoNumero = document.getElementById('num');
         var campoTitulo = document.getElementById('title');
         var campoCorpo = document.getElementById('body');
 
         campoNumero.value = ''; 
-        campoTitulo.innerHTML = '';
+        campoTitulo.innerHTML = ''; 
         campoCorpo.innerHTML = ''; 
     }
 }
