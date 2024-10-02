@@ -1,0 +1,19 @@
+.navbar-collapse {
+    flex-grow: 0;
+}
+
+.container-fluid.my-container {
+    justify-content: center;
+    flex-grow: 0;
+    margin-top: 50px;
+    margin-left: 550px;
+}
+
+.container-fluid.my-container-barra {
+    justify-content: center;
+}
+
+a.my_a {
+    margin-left: 560px; 
+    text-decoration: none;
+}
